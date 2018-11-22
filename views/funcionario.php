@@ -19,15 +19,21 @@
               <button class="btn btn-success" type="submit">Cadastrar</button>
     </div>
     
-    
-     <div class="alert alert-danger" role="alert">
-        Preencher os campos obrigatorios!Por favor!
+    <?php
+    if(isset($erro) && !empty($erro)){
+        ?>
+    <div class="alert alert-danger" role="alert">
+        <?php echo $erro;?>
     </div>
+    <?php } ?>
+      <?php
+    if(isset($ok) && !empty($ok)){
+        ?>
     <div class="alert alert-success" role="alert">
-        Cadastrado com sucesso!
+        <?php echo $ok; ?>
         
     </div>
-    
+     <?php } ?>
     
     
     
