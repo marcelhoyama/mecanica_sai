@@ -3,7 +3,7 @@
 
      public function cadastrar($nome,$cpf,$endereco,$telefone,$telefone2,$email){
     
-         $sql="INSERT INTO funcionarios VALUE :nome , :cpf , :endereco , :telefone , :telefone2 , :email";
+         $sql="INSERT INTO funcionarios (nome , cpf , endereco , telefone , telefone2 , email , data , status) VALUE (:nome , :cpf , :endereco , :telefone , :telefone2 , :email, :data , :status)";
          $sql=$this->db->prepare($sql);
          $sql->bindValue(":nome",$nome);
          $sql->bindValue(":cpf",$cpf);
@@ -12,7 +12,7 @@
          $sql->bindValue(":telefone2",$telefone2);
          $sql->bindValue(":email",$email);
          $sql->bindValue(":data",date("Y-m-d"));
-         $sql->bindValue(":satus",'Ativo');
+         $sql->bindValue(":status",'Ativo');
          
          
          $sql->execute();

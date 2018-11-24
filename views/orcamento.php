@@ -4,14 +4,16 @@
     <div class="form-group">
         <div class="row">
             <div class="col-sm">
-        <input class="form-control" name="numero" id="numero" value="Ordem de serviço" type="text">
+                <label for="numero">Ordem de Serviço</label>
+                <input class="form-control" name="numero" id="numero" value="<?php echo '';?>" type="text">
         </div>
             <div class="col-sm">
+                <label for="status">Status</label>
         <select class="form-control">
-            <option selected="selected">Selecione o Status...</option>
-            <option>Em aberto</option>
-            <option>Em manutenção</option>
-            <option>Finalizada</option>
+            <option selected="selected" name="status" id="status">Selecione o Status...</option>
+            <option value="Em Aberto">Em aberto</option>
+            <option value="Em Manutenção">Em manutenção</option>
+            <option value="Finalizada">Finalizada</option>
         </select>
         </div>
             </div>
@@ -21,27 +23,40 @@
             <div class="col-sm">
         <div class="input-group-prepend" >
             <span class="input-group-text"><span  class="glyphicon glyphicon-calendar"></span></span>
-            <input type="text" class="form-control" id="datepicker-entrada" placeholder="Data de Entrada" >
+            <input type="text" class="form-control" name="dataentrada" id="datepicker-entrada" placeholder="Data de Entrada" >
 
         </div>
                 </div>
             <div class="col-sm">
         <div class="input-group-prepend" >
             <span class="input-group-text"><span  class="glyphicon glyphicon-calendar"></span></span>
-            <input type="text" class="form-control" id="datepicker-saida" placeholder="Data de Saida" >
+            <input type="text" class="form-control" name="datasaida" id="datepicker-saida" placeholder="Data de Saida" >
 
         </div>
             </div>
         </div>
         <br>
+        <div class="row">
+            <div class="col-md">
+            <label for="nome">Nome do Cliente:</label>
        <div class="input-group mb-3">
-        <input class="form-control" name="nome" id="nome" value="nome cliente" type="text">
+            <select name="nome" id="nome" class="form-control">
+               <option>Selecione o Cliente Cadastrado...</option>
+           <?php foreach ($viewData['listarcliente'] as $value) :?>
+                    <option value="<?php echo $value['id']; ?>" ><?php echo $value['nome']; ?></option>
+
+           <?php  
+           endforeach;?>
+          
+            
+           </select>
+          
         <div class="input-group-append">
-            <a href="#" class="btn btn-outline-secondary"  data-toggle="modal" data-target="#clienteModal" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+            <a href="javascript::;" onclick="cadastrarcliente()" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
   </div>
        </div>
-        
-        
+        </div>
+        </div>
         <br>
         
         
@@ -60,32 +75,45 @@
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
     
-    <br>
-        
+          <div class="form-group">
+    <label for="marca">Marca:</label>
         <input class="form-control" name="marca" id="marca" placeholder="Marca/Modelo" type="text">
-        <br>
-       
+        </div>
+          <div class="form-group">
+        <label for="ano">Ano:</label>
         <input class="form-control"  name="ano" id="ano" placeholder="Ano" type="text">
-    <br>
-        
+    </div>
+          <div class="form-group">
+        <label for="placa">Placa:</label>
         <input class="form-control" name="placa" id="placa" placeholder="Placa" type="text">
-        <br>
-        <input class="form-control" name="km" id="km" placeholder="KM" type="text">
-        <br>
+        </div>
+          <div class="form-group">
+              <label for="km">KM:</label>
+        <input class="form-control" name="km" id="km" placeholder="Quilometragem" type="text">
+        </div>
+          <div class="form-group">
+          <label for="tipo">Tipo de Combustivel</label>
        <select class="form-control">
-        <option selected="">Tipo de Combustivel...</option>
+           <option selected="" id="tipo">Selecione o Tipo de Combustivel...</option>
         <option>Gasolina</option>
         <option>Alcool</option>
         <option>GNV</option>
         <option>Diesel</option>
         <option>Gasolina/Alcool</option>
     </select>
-        <br>
+          </div>
+          <div class="form-group">
+              <label for="defeito">Problema Relatado:</label>
         <textarea class="form-control" name="defeito" id="defeito" type="text" placeholder="Problema relatado"></textarea>
-        <br>
+        </div>
+           <div class="form-group">
+              <label for="obs">Observação:</label>
         <textarea class="form-control" name="obs" id="obs" type="text" placeholder="Observação"></textarea>
-        <br>
+           </div>
+           <div class="form-group">
+              <label for="servico">Serviço Realizado:</label>
         <textarea class="form-control" name="servico" id="servico" type="text" placeholder="Serviço Realizado"></textarea>
+      </div>
       </div>
     </div>
   </div>
@@ -102,21 +130,35 @@
       </button>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-   <br>
+    <div class="form-group">
+              <label for="tipo">Tipo do equipamento:</label>
    <input class="form-control" name="tipo" id="tipo" placeholder="Tipo do equipamento" type="text">
-        <br>
+   </div>
+    <div class="form-group">
+              <label for="marca">Marca/Modelo:</label>
         <input class="form-control" name="marca" id="marca" placeholder="Marca/Modelo" type="text">
-        <br>
-       
+    </div>
+        <div class="form-group">
+              <label for="fabricante">Fabricante:</label>
         <input class="form-control" name="fabricante" id="fabricante" placeholder="Fabricante" type="text">
-        <br>
+        </div>
+    <div class="form-group">
+              <label for="ano">Ano:</label>
         <input class="form-control"  name="ano" id="ano" placeholder="Ano" type="text">
-    <br>
-     <textarea class="form-control" name="defeito" id="defeito" type="text" placeholder="Problema reclamado"></textarea>
-        <br>
+    </div>   
+    <div class="form-group">
+              <label for="defeito">Problema Relatado:</label>
+   <textarea class="form-control" name="defeito" id="defeito" type="text" placeholder="Problema relatado"></textarea>
+    
+    </div>
+    <div class="form-group">
+              <label for="obs">Observação:</label>
         <textarea class="form-control" name="obs" id="obs" type="text" placeholder="Observação"></textarea>
-        <br>
+    </div>
+    <div class="form-group">
+              <label for="servico">Serviço Realizado:</label>
         <textarea class="form-control" name="servico" id="servico" type="text" placeholder="Serviço Realizado"></textarea> 
+      </div>
       </div>
     </div>
   </div>
@@ -137,27 +179,9 @@
         </button>
       </div>
       <div class="modal-body">
-          <label for="nome">Nome Completo</label>
-          <input class="form-control" name="nome" id="nome" value="nome cliente" type="text">
-          <br>
-          <label for="cpf">CPF</label>
-           <input class="form-control" name="cpf" id="cpf" placeholder="CPF somente numero" type="text">
-        <br>
-        <label for="endereco">Endereço</label>
-        <input class="form-control" name="endereco" id="endereco" placeholder="Endereço" type="text">
-        <br>
-          <label for="telefone">Telefone</label>
-         <input class="form-control" name="telefone" id="telefone" value="telefone cliente" type="text">
-        <br>
-        <label for="celular">Celular</label>
-        <input class="form-control" name="celular" id="celular" value="celular cliente" type="text">
-        <br>
-        <label for="email">E-mail</label>
-        <input class="form-control" name="email" id="email" value="e-mail cliente" type="email">
-      </div>
+         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Cadastrar</button>
+        
       </div>
     </div>
   </div>
@@ -177,6 +201,29 @@
 
 <?php }?>
     </div>
+
+
+
+
+
+</div>
+ <?php
+    if(isset($erro) && !empty($erro)){
+        ?>
+    <div class="alert alert-danger" role="alert">
+        <?php echo $erro;?>
+    </div>
+    <?php } ?>
+      <?php
+    if(isset($ok) && !empty($ok)){
+        ?>
+    <div class="alert alert-success" role="alert">
+        <?php echo $ok; ?>
+        
+    </div>
+     <?php } ?>
+    
+
 
 <!-- Modal pequeno -->
 
@@ -205,12 +252,3 @@
             startDate: '+0d'
         });
     </script>
-
-
-
-</div>
-<div class="alert alert-danger" role="alert">
-    Preencher os campos obrigatórios! Por favor!
-</div>
-
-

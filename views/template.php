@@ -12,19 +12,22 @@
         <link href="<?php echo BASE_URL; ?>assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo BASE_URL; ?>assets/css/glyphicon.css" rel="stylesheet">
 
-        <script src="<?php echo BASE_URL; ?>assets/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="<?php echo BASE_URL; ?>assets/js/jquery-3.1.1.min.js"></script>
 
         <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bunble.min.js"></script>
-
         <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.min.js"></script>
-
-
         <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/css/style.css"></script>
-        <script src="<?php BASE_URL; ?>assets/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-        <link href="<?php BASE_URL; ?>assets/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
-
-        <script src="<?php BASE_URL; ?>assets/js/locales/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
-
+        
+        <script src="<?php echo BASE_URL; ?>assets/js/additional-methods.min.js"></script>
+        <script src="<?php echo BASE_URL; ?>assets/js/jquery.mask.js"></script>
+        <script src="<?php echo BASE_URL; ?>assets/js/jquery.validate.js"></script>
+        
+        <script src="<?php echo BASE_URL; ?>assets/js/messages_pt_BR.js"></script>
+        <script src="<?php echo BASE_URL; ?>assets/js/validar_campos.js"></script>
+        <script src="<?php echo BASE_URL; ?>assets/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <link href="<?php echo BASE_URL; ?>assets/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+        <script src="<?php echo BASE_URL; ?>assets/js/locales/bootstrap-datepicker.pt-BR.min.js" type="text/javascript"></script>
+        <script src="<?php echo BASE_URL; ?>assets/js/script.js" type="text/javascript"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">

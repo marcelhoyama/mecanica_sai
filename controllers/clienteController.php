@@ -9,7 +9,7 @@ class clienteController extends controller {
         
         
         
-        $this->loadTemplate("cliente",$dados);
+        $this->loadView("cliente",$dados);
     }
 }
 

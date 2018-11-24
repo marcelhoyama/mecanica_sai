@@ -15,10 +15,10 @@ if (ENVIRONMENT == 'development') {
 }
 else{
 
-		//define("BASE_URL", "http://localhost/mecanica_sai/");
-        $config['dbname']='mecanica_sai';
-	$config['host']='localhost';
-	$config['dbuser']='root';
+		define("BASE_URL", "http://mecanicasai.devmg.pe.hu/");
+        $config['dbname']='u708362941_sai';
+	$config['host']='mysql.hostinger.com.br';
+	$config['dbuser']='u708362941_sai';
 	$config['dbpass']='';
 }
 

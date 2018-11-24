@@ -7,7 +7,7 @@ class funcionarioController extends controller {
         
         $f=new funcionario();
         
-        if(isset($_POST['nome']) && isset($_POST['telefone2'])){
+        if(isset($_POST['nome']) && !empty($_POST['nome']) && isset($_POST['telefone2']) && !empty($_POST['telefone2'])){
             
             $nome= trim(addslashes($_POST['nome']));
             $cpf=trim(addslashes($_POST['cpf']));
@@ -19,7 +19,7 @@ class funcionarioController extends controller {
             if($f->cadastrar($nome, $cpf, $endereco, $telefone, $telefone2, $email) ==true ){
                 $dados['ok']="Cadastrado com Sucesso!";
         }else{
-            $dados['erro']="Não foi possivel fazr o cadastro!  Verifique os campos se estão preenchidos corretamente.";
+            $dados['erro']="Não foi possivel fazer o cadastro!  Verifique os campos se estão preenchidos corretamente.";
         }
         
         }
