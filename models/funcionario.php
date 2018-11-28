@@ -24,4 +24,20 @@
          }
 }
 
+public function listarFuncionario() {
+    try{
+        $array=array();
+        $sql="SELECT * FROM funcionarios ORDER BY nome";
+        $sql=$this->db->prepare($sql);
+        $sql->execute();
+        if ($sql->rowCount()>0) {
+            $array=$sql->fetchAll(PDO::FETCH_ASSOC);
+            
+        }
+        return $array;
+    } catch (Exception $ex) {
+echo "Falhou:".$ex->getMessage();
+    }
+}
+
  }

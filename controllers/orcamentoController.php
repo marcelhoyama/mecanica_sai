@@ -7,25 +7,40 @@ class orcamentoController extends controller {
         
         $c=new cliente();
         $o=new orcamento();
-        $dados['listarcliente']=$c->listarCliente();
-        
+        $f=new funcionario();
+        $dados['listarfuncionario']=$f->listarFuncionario();
+       $dados['listarcliente']=$c->listarCliente();
+       
+       //gerar numero ordem serviço ,pega resultado da query e aqui soma +1
+       $ultimoNumero=$o->listarOrdemServico();
+        if($ultimoNumero==null){
+            $ultimoNumero=0;
+        }
+        $dados['ultimoNumero']=1+$ultimoNumero;
         if(isset($_POST['numero']) && !empty($_POST['numero'])){
-            $numero= trim(addslashes($_POST['numero']));
+            $numero= addslashes($_POST['numero']);
+            
             $status= trim(addslashes($_POST['status']));
             $dataentrada= trim(addslashes($_POST['dataentrada']));
             $datasaida= trim(addslashes($_POST['datasaida']));
-            $nome= trim(addslashes($_POST['nome']));
+            $id_cliente= trim(addslashes($_POST['id_cliente']));
             
-           if($c->cadastrar($nome, $cpf, $endereco, $telefone, $telefone2, $email)==true){
-          $dados['ok']=$c->cadastrar($nome, $cpf, $endereco, $telefone, $telefone2, $email);
-               }else{
-                   $dados['erro']="Não foi possivel cadastrar! Verifique os campos estão preenchidos corretamente.";
-               }
-           
+            
+            //veiculo
+            
+            $marca= trim(addslashes($_POST['marca']));
+            $ano= trim(addslashes($_POST['ano']));
+            $placa= trim(addslashes($_POST['placa']));
+            $km= trim(addslashes($_POST['km']));
+            $tipocombustivel= trim(addslashes($_POST['tipo']));
+            $problema= trim(addslashes($_POST['defeito']));
+            $obs= trim(addslashes($_POST['obs']));
+            $servico= trim(addslashes($_POST['servico']));
+            
         }
         
-        
         $this->loadTemplate("orcamento",$dados);
-    }
+    
+}
 }
 

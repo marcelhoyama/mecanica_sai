@@ -49,12 +49,12 @@
                         Cadastrar
                     </a>
                     <div class="dropdown-menu">
-                     <!-- <a class="dropdown-item" href="<?php BASE_URL; ?>cliente">Cliente</a> -->
+                      <a class="dropdown-item" href="<?php BASE_URL; ?>cliente">Cliente</a> 
                         <a class="dropdown-item" href="<?php BASE_URL; ?>funcionario">Funcionario</a>
                       <!--  <a class="dropdown-item" href="<?php BASE_URL; ?>veiculo">Veiculo</a>
                         <a class="dropdown-item" href="<?php BASE_URL; ?>equipamento">Equipamento</a> -->
                         <a class="dropdown-item" href="<?php BASE_URL; ?>orcamento">Orçamento</a>
-                        <a class="dropdown-item" href="<?php BASE_URL; ?>produto">Produto</a>
+<!--                        <a class="dropdown-item" href="<?php BASE_URL; ?>produto">Produto</a>-->
 
                     </div>
                 </li>

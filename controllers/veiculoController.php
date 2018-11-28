@@ -9,7 +9,7 @@ class veiculoController extends controller {
         
         
         
-        $this->loadTemplate("veiculo",$dados);
+        $this->loadView("veiculo",$dados);
     }
 }
 

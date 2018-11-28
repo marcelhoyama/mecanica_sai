@@ -4,6 +4,7 @@ class cliente extends model {
 
     public function cadastrar($nome, $cpf, $endereco, $telefone, $telefone2, $email) {
         try {
+            $array=array();  
             $sql = "INSERT INTO clientes (nome , cpf , endereco , telefone , telefone2 , email , data , status) VALUE (:nome , :cpf , :endereco , :telefone , :telefone2 , :email,:data , :status)";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(":nome", $nome);
@@ -17,10 +18,12 @@ class cliente extends model {
 
 
             $sql->execute();
-
+$id_cliente= $this->db->lastInsertId();
             if ($sql->rowCount() > 0) {
 
-                return TRUE;
+           
+$array=$this->listarUmCliente($id_cliente);
+return  json_encode($array);
             } else {
                 return false;
             }
@@ -34,19 +37,33 @@ class cliente extends model {
             $array = array();
             $sql = 'SELECT * FROM clientes ORDER BY nome';
             $sql = $this->db->prepare($sql);
-$sql->execute();
+            $sql->execute();
             if ($sql->rowCount() > 0) {
                 $array = $sql->fetchAll();
-            
-            
-                
-            }else{
-               return FALSE;
+            } else {
+                return FALSE;
             }
             return $array;
         } catch (Exception $ex) {
-            echo "Falhou:".$ex->getMessage();
+            echo "Falhou:" . $ex->getMessage();
         }
     }
 
+     public function listarUmCliente($id_cliente) {
+        try {
+            $array = array();
+            $sql = 'SELECT * FROM clientes WHERE id =:id_cliente';
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(':id_cliente',$id_cliente);
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $array = $sql->fetchAll();
+            } else {
+                return FALSE;
+            }
+            return  json_encode($array);
+        } catch (Exception $ex) {
+            echo "Falhou:" . $ex->getMessage();
+        }
+    }
 }

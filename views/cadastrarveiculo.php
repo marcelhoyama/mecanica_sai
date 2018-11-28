@@ -1,8 +1,7 @@
 <form method="POST" id="cadastrarveiculo"> 
     <h1 class="text text-center">Cadastro veiculo</h1>
 <div class="form-group">
-    <input class="form-control" name="id_cliente" id="id_cliente" value="<?php ?>" type="text" disabled="disabled">
-    <br>
+   
     <input class="form-control" name="marca" id="marca" placeholder="Marca/modelo" type="text">
     <br>
     
@@ -25,7 +24,8 @@
            <option value="Gasolina/Alcool">Gasolina/Alcool</option>
     </select>
           </div>
-   
+    <br>
+        
     <button class="btn btn-success" type="submit">Cadastrar</button>
     
   

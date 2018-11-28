@@ -32,7 +32,7 @@ $(document).ready(function () {
     $('#cadastrarcliente').validate({
 
         rules: {
-            cpf: {required: true, cpfBR: true},
+            cpf: {cpfBR: true},
             nome: {required: true, isString: true},
             telefone2: "required",
             email: true

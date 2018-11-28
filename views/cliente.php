@@ -1,4 +1,5 @@
 <form method="POST" id="cadastrarcliente"> 
+    <h1 class="text text-center">Cadastro Cliente</h1>
 <label for="nome">Nome Completo</label>
           <input class="form-control" name="nome" id="nome"  type="text">
           <br>

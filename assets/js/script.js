@@ -15,17 +15,105 @@ function cadastrarcliente() {
                 var cpf = $(this).find('input[name=cpf]').val();
                 var endereco = $(this).find('input[name=endereco]').val();
                 var telefone = $(this).find('input[name=telefone]').val();
-                var celular = $(this).find('input[name=telefone2]').val();
+                var telefone2 = $(this).find('input[name=telefone2]').val();
                 var email = $(this).find('input[name=email]').val();
 
- if(nome === '' && celular===''){
+ if(nome === '' && telefone2===''){
                          
                      }else{
 
                 $.ajax({
                     url: 'cadastrarcliente',
                     type: 'POST',
-                    data: {nome: nome, email: email, telefone: telefone, celular: celular, endereco: endereco, cpf: cpf},
+                    data: {nome: nome, email: email, telefone: telefone, telefone2: telefone2, endereco: endereco, cpf: cpf},
+                
+                        success: function () {
+                            ListaCliente();
+//                            $.ajax({
+//                                url:'listarcliente',
+//                                type:'POST',
+//                                
+//                                sucess:function(json){
+//                                    
+//                                    var html='';
+//                                    for(var i in json){
+//                                        html+= '<option value"'+json[i].id+'">'+json[i].titulo+'</option>';
+//                                    }
+//                                    $('#id_cliente').html(html);
+//                                }
+//                            });
+                    
+                     
+                        
+
+                    }
+                    
+                });
+                
+$('#clienteModal').modal('hide');
+                     }
+
+            });
+
+
+        }
+    });
+}
+
+function ListaCliente(){
+    $.post(
+            "listarcliente",
+    function(retorno){
+        $('#id_cliente').html(retorno);
+    });
+}
+function pegarObjeto(obj){
+    var item=obj.value;
+    $.ajax({
+       url: 'pegar_item',
+       type:'POST',
+       data:{cliente:item},
+       dataType:'json',
+       sucess:function(json){
+              var html='';
+                                    for(var i in json){
+                                        html+= '<option value"'+json[i].id+'">'+json[i].titulo+'</option>';
+                                    }
+                                    $('#id_veiculo').html(html);
+                                
+       }
+    });
+}
+function cadastrarveiculo() {
+    $('#clienteModal').modal('toggle');
+    $.ajax({
+        url: 'veiculo',
+        type: 'POST',
+
+        success: function (html) {
+
+            $('#clienteModal').find('.modal-body').html(html);
+            $('#clienteModal').find('.modal-body').find('form').on('submit', function (e) {
+
+                e.preventDefault();
+
+                var marca = $(this).find('input[name=marca]').val();
+                var ano = $(this).find('input[name=ano]').val();
+                var placa = $(this).find('input[name=placa]').val();
+                var km = $(this).find('input[name=km]').val();
+                var tipo = $(this).find('input[name=tipo]').val();
+                var defeito = $(this).find('input[name=defeito]').val();
+                var servico = $(this).find('input[name=servico]').val();
+                var obs = $(this).find('input[name=obs]').val();
+
+ if(placa === '' && km===''){
+                         
+                     }else{
+
+                $.ajax({
+                    url: 'cadastrarveiculo',
+                    type: 'POST',
+                    data: {marca: marca, ano: ano, placa: placa, km: km, tipo: tipo, defeito: defeito, servico: servico, obs :obs},
                 
                         success: function () {
 
@@ -42,6 +130,50 @@ function cadastrarcliente() {
 
         }
     });
-}
+    }
+    function cadastrarequipamento() {
+    $('#clienteModal').modal('toggle');
+    $.ajax({
+        url: 'equipamento',
+        type: 'POST',
 
+        success: function (html) {
+
+            $('#clienteModal').find('.modal-body').html(html);
+            $('#clienteModal').find('.modal-body').find('form').on('submit', function (e) {
+
+                e.preventDefault();
+
+                var marca = $(this).find('input[name=marca]').val();
+                var ano = $(this).find('input[name=ano]').val();
+                                               var tipo = $(this).find('input[name=tipo]').val();
+                var defeito = $(this).find('input[name=defeito]').val();
+                var servico = $(this).find('input[name=servico]').val();
+                var obs = $(this).find('input[name=obs]').val();
+
+ if(placa === '' && km===''){
+                         
+                     }else{
+
+                $.ajax({
+                    url: 'cadastrarequipamento',
+                    type: 'POST',
+                    data: {marca: marca, ano: ano, tipo: tipo, defeito: defeito, servico: servico, obs :obs},
+                
+                        success: function (retorno) {
+
+                    $('#id_cliente').html(retorno);
+                        $('#clienteModal').modal('hide');
+
+                    }
+                });
+
+                     }
+
+            });
+
+
+        }
+    });
+}
 

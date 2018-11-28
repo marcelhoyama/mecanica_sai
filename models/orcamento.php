@@ -2,16 +2,15 @@
 
 class orcamento extends model {
 
-    public function cadastrar($nome, $cpf, $endereco, $telefone, $telefone2, $email) {
+    public function cadastrar($numero, $status, $dataentrada, $datasaida, $id) {
         try {
-            $sql = "INSERT INTO clientes (nome , cpf , endereco , telefone , telefone2 , email , data , status) VALUE (:nome , :cpf , :endereco , :telefone , :telefone2 , :email,:data , :status)";
+            $sql = "INSERT INTO orcamento (numero, status, entrada,saida, id_cliente) VALUE (:numero, :status, :entrada,:saida, :id_cliente)";
             $sql = $this->db->prepare($sql);
-            $sql->bindValue(":nome", $nome);
-            $sql->bindValue(":cpf", $cpf);
-            $sql->bindValue(":endereco", $endereco);
-            $sql->bindValue(":telefone", $telefone);
-            $sql->bindValue(":telefone2", $telefone2);
-            $sql->bindValue(":email", $email);
+            $sql->bindValue(":numero", $numero);
+            $sql->bindValue(":status", $status);
+            $sql->bindValue(":entrada", $dataentrada);
+            $sql->bindValue(":id_cliente", $id);
+            $sql->bindValue(":saida", $datasaida);
             $sql->bindValue(":data", date("Y-m-d"));
             $sql->bindValue(":status", 'Ativo');
 
@@ -29,23 +28,20 @@ class orcamento extends model {
         }
     }
 
-    public function listarOS() {
+    public function listarOrdemServico() {
         try {
             $array = array();
-            $sql = 'SELECT id FROM orcamentos ORDER BY id DESC';
+            $sql = 'SELECT id FROM orcamentos ORDER BY id DESC LIMIT 1';
             $sql = $this->db->prepare($sql);
-$sql->execute();
+            $sql->execute();
             if ($sql->rowCount() > 0) {
                 $array = $sql->fetch();
-            
-            
-                
-            }else{
+            } else {
                 return false;
             }
             return $array;
         } catch (Exception $ex) {
-            echo "Falhou:".$ex->getMessage();
+            echo "Falhou:" . $ex->getMessage();
         }
     }
 
