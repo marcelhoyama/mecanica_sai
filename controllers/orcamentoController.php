@@ -2,6 +2,10 @@
 
 class orcamentoController extends controller {
     
+    public function __construct() {
+        parent::__construct();
+    }
+
     public function index (){
         $dados=array('erro'=>'','ok'=>'');
         
@@ -40,6 +44,25 @@ class orcamentoController extends controller {
         }
         
         $this->loadTemplate("orcamento",$dados);
+    
+}
+
+public function pegar_veiculo(){
+    
+    $dados=array();
+    if(isset($_POST['cliente'])){
+         
+        $id_cliente= trim(addslashes($_POST['cliente']));
+        $v=new veiculo();
+        $dados=$v->listarVeiculo($id_cliente);
+     
+        header('Content-Type: application/json');
+    echo json_encode($dados);
+    exit;
+          
+    }else{
+        echo 'nao entrou no if<br>';
+    }
     
 }
 }

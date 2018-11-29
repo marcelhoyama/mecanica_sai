@@ -1,6 +1,6 @@
 
            
-            
+<!--            
                   <select name="id_veiculo" id="id_veiculo" class="form-control">
                     <option>Selecione o Veiculo Cadastrado...</option>
                     <?php foreach ($viewData['listarveiculo'] as $value) : ?>
@@ -9,7 +9,7 @@
                     <?php endforeach; ?>
 
 
-                </select>
+                </select>-->
 
               
 

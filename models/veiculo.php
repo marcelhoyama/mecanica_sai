@@ -31,14 +31,15 @@ class veiculo extends model {
         }
     }
 
-    public function listarVeiculo() {
+    public function listarVeiculo($id_cliente) {
         try {
             $array = array();
-            $sql = 'SELECT * FROM veiculos ORDER BY id DESC';
+            $sql = 'SELECT * FROM veiculos WHERE id_cliente = :id_cliente ORDER BY id DESC';
             $sql = $this->db->prepare($sql);
+            $sql->bindValue(":id_cliente",$id_cliente);
             $sql->execute();
             if ($sql->rowCount() > 0) {
-                $array = $sql->fetchAll();
+                $array = $sql->fetchAll(pdo::FETCH_ASSOC);
             } else {
                 return FALSE;
             }
@@ -48,4 +49,5 @@ class veiculo extends model {
         }
     }
 
+    
 }

@@ -11,5 +11,7 @@ class veiculoController extends controller {
         
         $this->loadView("veiculo",$dados);
     }
+   
+
 }
 

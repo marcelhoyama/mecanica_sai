@@ -9,7 +9,7 @@ class homeController extends controller {
         
         
         
-        $this->loadView("home",$dados);
+        $this->loadTemplate("home",$dados);
     }
 }
 
