@@ -10,7 +10,7 @@ class listarclienteController extends controller {
        
        $dados['listarcliente']=$c->listarCliente();
        
-        // json_encode($dados);
+        
         
         $this->loadView("listarcliente",$dados);
     

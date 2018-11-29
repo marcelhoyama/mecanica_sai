@@ -75,11 +75,35 @@ function pegarObjeto(obj) {
 
                 }
                 $('#id_veiculo').html(html);
+                var html3 = '';
+       for (var i in json) {
+                    html3 += '<input hidden="hidden" id="cliente" value="' + json[i].id_cliente + '">';
+
+                }
+                $('.numero_cliente').html(html3);
+           $.ajax({
+        url:'orcamento/pegar_equipamento',
+        type: 'POST',
+        data: {cliente:item},
+        dataType: 'json',
+        success: function (json2) {
+            
+                var html2 = '';
+                
+                for (var i in json2) {
+                    html2 += '<option value="' + json2[i].id + '">' + json2[i].tipo + '</option>';
+
+                }
+                $('#id_equipamento').html(html2);
 
           
         }
     });
+        }
+    });
+     
 }
+
 
 
 function cadastrarveiculo() {
@@ -103,7 +127,7 @@ function cadastrarveiculo() {
                 var defeito = $(this).find('input[name=defeito]').val();
                 var servico = $(this).find('input[name=servico]').val();
                 var obs = $(this).find('input[name=obs]').val();
-                var id_cliente = $(this).find('[input[name=id_cliente]').val();
+                var id_cliente = $(this).find('[input[name=cliente]').val();
 
                 if (placa === '' && km === '') {
 

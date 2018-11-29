@@ -41,6 +41,7 @@ class orcamentoController extends controller {
             $obs= trim(addslashes($_POST['obs']));
             $servico= trim(addslashes($_POST['servico']));
             
+            
         }
         
         $this->loadTemplate("orcamento",$dados);
@@ -55,6 +56,25 @@ public function pegar_veiculo(){
         $id_cliente= trim(addslashes($_POST['cliente']));
         $v=new veiculo();
         $dados=$v->listarVeiculo($id_cliente);
+     
+        header('Content-Type: application/json');
+    echo json_encode($dados);
+    exit;
+          
+    }else{
+        echo 'nao entrou no if<br>';
+    }
+    
+}
+
+public function pegar_equipamento(){
+    
+    $dados=array();
+    if(isset($_POST['cliente'])){
+         
+        $id_cliente= trim(addslashes($_POST['cliente']));
+        $e=new equipamento();
+        $dados=$e->listarEquipamento($id_cliente);
      
         header('Content-Type: application/json');
     echo json_encode($dados);

@@ -10,7 +10,7 @@
                     <option>Selecione o Cliente Cadastrado...</option>
                     <?php foreach ($viewData['listarcliente'] as $value) : ?>
                         <option value="<?php echo $value['id']; ?>" ><?php echo $value['nome']; ?></option>
-
+                        
                     <?php endforeach; ?>
 
 
@@ -43,22 +43,21 @@
                     <option>Aguardando seleção do cliente...</option>
                 
                 </select>
-
+                <div class="numero_cliente" hi >
+                    
+                </div>
                 <div class="input-group-append">
                     <a href="javascript::;" onclick="cadastrarveiculo()" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                 </div>
             </div>
         </div>
         <div class="col-sm">
-            <label for="equipamento">Cadastrar Equipamento: </label>
+            <label for="equipamento">Selecione o Equipamento: </label>
             <div class="input-group mb-3">
-                <select id="equipamento" name="equipamento" class="form-control">
+                <select id="id_equipamento" name="equipamento" class="form-control">
 
-                    <option >Selecione o Equipamento...</option>
-                    <?php foreach ($viewData['listarequipamento'] as $equipamento) : ?>
-                        <option value="<?php echo $equipamento['id']; ?>" ><?php echo $equipamento['marca']; ?></option>
-
-                    <?php endforeach; ?>
+                    <option >Aguardando seleção do cliente...</option>
+                   
                 </select>
                 <div class="input-group-append">
                     <a href="javascript::;" onclick="cadastrarequipamento()" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
