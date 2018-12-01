@@ -72,7 +72,7 @@ public function pegar_equipamento(){
     $dados=array();
     if(isset($_POST['cliente'])){
          
-        $id_cliente= trim(addslashes($_POST['cliente']));
+       $id_cliente= trim(addslashes($_POST['cliente']));
         $e=new equipamento();
         $dados=$e->listarEquipamento($id_cliente);
      

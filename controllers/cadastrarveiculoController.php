@@ -16,7 +16,7 @@ class cadastrarveiculoController extends controller {
            
             $v=new veiculo();
         if($v->cadastrar($marca, $ano, $placa, $km, $tipo,$id_cliente)==TRUE){
-            echo "passou";
+         
         }else{
             echo 'nao passou';
         }

@@ -85,7 +85,7 @@ function ListaEquipamento(id_cliente) {
 function pegarObjeto(obj) {
     var item = obj.value;
     if (item === null) {
-
+        alert('id vazio');
     } else {
         $.ajax({
             url: 'orcamento/pegar_veiculo',
@@ -94,16 +94,17 @@ function pegarObjeto(obj) {
             dataType: 'json',
             success: function (json) {
                 if (json === false) {
+                    var html = '';
                     html += '<option value=""> Nada Encontrado...</option>';
 
 
                     $('#id_veiculo').html(html);
                     var html3 = '';
 
-                    html3 += ' <a href="javascript::;" onclick="cadastrarveiculo(' + item + ')" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>';
+                    html3 += ' <a href="javascript:;" onclick="cadastrarveiculo(' + item + ')" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>';
 
                     $('.numero_cliente').html(html3);
-
+                    pegarEquipamento(item);
 
                 } else {
                     var html = '';
@@ -113,53 +114,14 @@ function pegarObjeto(obj) {
 
                     }
                     $('#id_veiculo').html(html);
-                    var html3 = '';
+                    var html8 = '';
 
-                    html3 += '<input hidden="hidden" id="cliente" value="' + json[i].id_cliente + '">';
-                    html3 += ' <a href="javascript::;" onclick="cadastrarveiculo(' + json[i].id_cliente + ')" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>';
+                    html8 += '<input hidden="hidden" id="cliente" value="' + json[i].id_cliente + '">';
+                    html8 += ' <a href="javascript:;" onclick="cadastrarveiculo(' + json[i].id_cliente + ')" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>';
 
-                    $('.numero_cliente').html(html3);
-                    $.ajax({
-                        url: 'orcamento/pegar_equipamento',
-                        type: 'POST',
-                        data: {cliente: item},
-                        dataType: 'json',
-                        success: function (json2) {
-                            if (json2 === false) {
-                               var html ='';
-                                html += '<option value=""> Nada Encontrado...</option>';
+                    $('.numero_cliente').html(html8);
 
-
-                                $('#id_equipamento').html(html);
-                                var html3 = '';
-
-                                html3 += ' <a href="javascript::;" onclick="cadastrarequipamento(' + item + ')" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>';
-
-                                $('.numero_equipamento').html(html3);
-
-
-                            } else {
-                                var html2 = '';
-
-                                for (var i in json2) {
-                                    html2 += '<option value="' + json2[i].id + '">' + json2[i].tipo + '</option>';
-
-                                }
-                                $('#id_equipamento').html(html2);
-
-
-                                var html3 = '';
-
-                                html3 += '<input hidden="hidden" id="cliente" value="' + json2[i].id_cliente + '">';
-                                html3 += ' <a href="javascript::;" onclick="cadastrarequipamento(' + json2[i].id_cliente + ')" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>';
-
-                                $('.numero_equipamento').html(html3);
-                            }
-                        },
-                        error: function () {
-                            // cadastro equipamento
-                        }
-                    });
+                    pegarEquipamento(item);
                 }
             },
             error: function () {
@@ -169,7 +131,53 @@ function pegarObjeto(obj) {
     }
 }
 
+function pegarEquipamento(item) {
 
+
+    $.ajax({
+        url: 'orcamento/pegar_equipamento',
+        type: 'POST',
+        data: {cliente: item},
+        dataType: 'json',
+        success: function (json) {
+            if (json === false) {
+                var html4 = '';
+                html4 += '<option value=""> Nada Encontrado...</option>';
+
+                $('#id_equipamento').html(html4);
+
+                var html5 = '';
+
+                html5 += ' <a href="javascript:;" onclick="cadastrarequipamento(' + item + ')" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>';
+
+                $('.numero_equipamento').html(html5);
+
+
+            } else {
+
+                var html6 = '';
+
+                for (var i in json) {
+
+                    html6 += '<option value="' + json[i].id + '">' + json[i].tipo + '</option>';
+
+                }
+                $('#id_equipamento').html(html6);
+
+
+                var html3 = '';
+
+                html3 += '<input hidden="hidden" id="cliente" value="' + json[i].id_cliente + '">';
+                html3 += ' <a href="javascript:;" onclick="cadastrarequipamento(' + json[i].id_cliente + ')" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>';
+
+                $('.numero_equipamento').html(html3);
+            }
+        },
+        error: function () {
+            // cadastro equipamento
+        }
+    });
+}
 
 function cadastrarveiculo(id_cliente) {
     $('#clienteModal').modal('toggle');
@@ -223,21 +231,21 @@ function cadastrarequipamento(id_cliente) {
         url: 'equipamento',
         type: 'POST',
         data: {id_cliente: id_cliente},
-        dataType: 'jason',
+        
 
-        success: function (html) {
+        success: function (resposta) {
 
-            $('#clienteModal').find('.modal-body').html(html);
+            $('#clienteModal').find('.modal-body').html(resposta);
             $('#clienteModal').find('.modal-body').find('form').on('submit', function (e) {
 
                 e.preventDefault();
 
                 var marca = $(this).find('input[name=marca]').val();
-                var ano = $(this).find('input[name=ano]').val();
+                var descricao = $(this).find('textarea[name=descricao]').val();
                 var tipo = $(this).find('input[name=tipo]').val();
-                var defeito = $(this).find('input[name=defeito]').val();
-                var servico = $(this).find('input[name=servico]').val();
-                var obs = $(this).find('input[name=obs]').val();
+
+                var id_cliente = $(this).find('input[name=cliente_veiculo]').val();
+
 
                 if (marca === '' && tipo === '') {
 
@@ -246,8 +254,8 @@ function cadastrarequipamento(id_cliente) {
                     $.ajax({
                         url: 'cadastrarequipamento',
                         type: 'POST',
-                        data: {marca: marca, ano: ano, tipo: tipo, defeito: defeito, servico: servico, obs: obs},
-
+                        data: {marca: marca, descricao: descricao, tipo: tipo, id_cliente:id_cliente},
+                        dataType: 'json',
                         success: function () {
 
                             ListarEquipamento(id_cliente);

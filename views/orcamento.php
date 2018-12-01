@@ -56,7 +56,7 @@
         <div class="col-sm">
             <label for="equipamento">Selecione o Equipamento: </label>
             <div class="input-group mb-3">
-                <select id="id_equipamento" name="equipamento" class="form-control">
+                <select id="id_equipamento" name="id_equipamento" class="form-control">
 
                     <option >Aguardando seleção do cliente...</option>
                    

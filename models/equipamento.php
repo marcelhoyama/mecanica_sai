@@ -2,18 +2,14 @@
 
 class equipamento extends model {
 
-    public function cadastrar($tipo, $ano, $marca, $fabricante, $defeito, $obs, $servico, $id_cliente) {
+    public function cadastrar($tipo, $descricao, $marca, $id_cliente) {
         try {
-            $sql = "INSERT INTO equipamentos(marca, ano, tipo, defeito,obs, servico,fabricante,id_cliente, data) VALUE (:marca, :ano, :tipo, :defeito,:obs, :servico,:fabricante,:id_cliente,:data )";
+            $sql = "INSERT INTO equipamentos(marca, descricao, tipo,id_cliente, data) VALUE (:marca, :descricao, :tipo,:id_cliente,:data )";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(":marca", $marca);
-            $sql->bindValue(":ano", $ano);
+            $sql->bindValue(":descricao", $descricao);
             $sql->bindValue(":tipo", $tipo);
-            $sql->bindValue(":defeito", $defeito);
-            $sql->bindValue(":obs", $obs);
-            $sql->bindValue(":servico", $servico);
-            $sql->bindValue(":fabricante", $fabricante);
-            $sql->bindValue(":id_cliente",$id_cliente);
+            $sql->bindValue(":id_cliente", $id_cliente);
             $sql->bindValue(":data", date("Y-m-d"));
 
 
@@ -36,11 +32,10 @@ class equipamento extends model {
             $array = array();
             $sql = 'SELECT * FROM equipamentos WHERE id_cliente = :id_cliente ORDER BY id DESC';
             $sql = $this->db->prepare($sql);
-            $sql->bindValue(":id_cliente",$id_cliente);
+            $sql->bindValue(":id_cliente", $id_cliente);
             $sql->execute();
             if ($sql->rowCount() > 0) {
                 $array = $sql->fetchAll(pdo::FETCH_ASSOC);
-             
             } else {
                 return FALSE;
             }
@@ -49,6 +44,5 @@ class equipamento extends model {
             echo "Falhou:" . $ex->getMessage();
         }
     }
-   
 
 }

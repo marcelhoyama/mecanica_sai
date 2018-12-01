@@ -2,26 +2,29 @@
 
 class cadastrarequipamentoController extends controller {
 
+    public function __construct() {
+        parent::__construct();
+    }
+
     public function index() {
           $dados=array('erro'=>'','ok'=>'');
         
-        $c=new cliente();
-        $dados['listarcliente']=$c->listarCliente();
-        
+      
         
         
         $e = new equipamento();
         if (isset($_POST['tipo']) && !empty($_POST['tipo'])) {
             $tipo = trim(addslashes($_POST['tipo']));
             $marca = trim(addslashes($_POST['marca']));
-            $fabricante = trim(addslashes($_POST['fabricante']));
-            $ano = addslashes($_POST['ano']);
-            $defeito = addslashes($_POST['defeito']);
-            $obs = addslashes($_POST['obs']);
-            $servico = addslashes($_POST['servico']);
+            $id_cliente = trim(addslashes($_POST['id_cliente']));
+            $descricao = addslashes($_POST['descricao']);
+           
 
 
-            $e->cadastrar($tipo, $ano, $marca, $fabricante, $defeito, $obs, $servico);
+            if($e->cadastrar($tipo, $descricao, $marca, $id_cliente)== TRUE){
+                
+        }else{
+             echo 'nao passou no cadastro';
         }
 
         $this->loadView("cadastrarequipamento", $dados);
