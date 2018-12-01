@@ -1,4 +1,4 @@
-<form method="POST" id="cadastrarveiculo"> 
+<!--<form method="POST" id="cadastrarveiculo"> 
     <h1 class="text text-center">Cadastro veiculo</h1>
 <div class="form-group">
    
@@ -32,4 +32,4 @@
     
 </div>
 
-
+-->

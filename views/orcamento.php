@@ -43,12 +43,14 @@
                     <option>Aguardando seleção do cliente...</option>
                 
                 </select>
-                <div class="numero_cliente" hi >
-                    
-                </div>
+                
                 <div class="input-group-append">
-                    <a href="javascript::;" onclick="cadastrarveiculo()" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                    <div class="numero_cliente"  >
+                    
+               
+                        <button class="btn btn-outline-secondary" type="button" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 </div>
+                    </div>
             </div>
         </div>
         <div class="col-sm">
@@ -60,7 +62,9 @@
                    
                 </select>
                 <div class="input-group-append">
-                    <a href="javascript::;" onclick="cadastrarequipamento()" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                    <div class="numero_equipamento">
+                    <button class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                </div>
                 </div>
             </div>
         </div>

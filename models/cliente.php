@@ -5,7 +5,7 @@ class cliente extends model {
     public function cadastrar($nome, $cpf, $endereco, $telefone, $telefone2, $email) {
         try {
             $array=array();  
-            $sql = "INSERT INTO clientes (nome , cpf , endereco , telefone , telefone2 , email , data , status) VALUE (:nome , :cpf , :endereco , :telefone , :telefone2 , :email,:data , :status)";
+            $sql = "INSERT INTO clientes (nome , cpf , endereco , telefone , telefone2 , email , data , status) VALUES (:nome , :cpf , :endereco , :telefone , :telefone2 , :email,:data , :status)";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(":nome", $nome);
             $sql->bindValue(":cpf", $cpf);

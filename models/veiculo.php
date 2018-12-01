@@ -2,20 +2,17 @@
 
 class veiculo extends model {
 
-    public function cadastrar($marca, $ano, $placa, $km, $tipo, $servico, $defeito, $obs, $id_veiculo) {
+    public function cadastrar($marca, $ano, $placa, $km, $combustivel, $id_cliente) {
         try {
-            $sql = "INSERT INTO clientes (marca, ano, placa, km, tipo, defeito, servico, obs,data,id_veiculo) VALUE (:marca, :ano, :placa,:km, :tipo, :defeito, :servico,:obs,:data , :id_veiculo)";
+            $sql = "INSERT INTO veiculos (marca, ano, placa, km, combustivel, data, id_cliente) VALUES (:marca, :ano, :placa ,:km, :combustivel, :data , :id_cliente)";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(":marca", $marca);
             $sql->bindValue(":ano", $ano);
             $sql->bindValue(":placa", $placa);
             $sql->bindValue(":km", $km);
-            $sql->bindValue(":tipo", $tipo);
-            $sql->bindValue(":defeito", $defeito);
-            $sql->bindValue(":servico", $servico);
-            $sql->bindValue(":obs", $obs);
+            $sql->bindValue(":combustivel", $combustivel);
             $sql->bindValue(":data", date("Y-m-d"));
-            $sql->bindValue(":id_veiculo", $id_veiculo);
+            $sql->bindValue(":id_cliente", $id_cliente);
 
 
             $sql->execute();
@@ -36,7 +33,7 @@ class veiculo extends model {
             $array = array();
             $sql = 'SELECT * FROM veiculos WHERE id_cliente = :id_cliente ORDER BY id DESC';
             $sql = $this->db->prepare($sql);
-            $sql->bindValue(":id_cliente",$id_cliente);
+            $sql->bindValue(":id_cliente", $id_cliente);
             $sql->execute();
             if ($sql->rowCount() > 0) {
                 $array = $sql->fetchAll(pdo::FETCH_ASSOC);
@@ -48,6 +45,6 @@ class veiculo extends model {
             echo "Falhou:" . $ex->getMessage();
         }
     }
-
     
+
 }
