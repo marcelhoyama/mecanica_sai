@@ -17,7 +17,7 @@
                 </select>
 
                 <div class="input-group-append">
-                    <a href="javascript::;" onclick="cadastrarcliente(this)" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                    <a href="javascript:;" onclick="cadastrarcliente(this)" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                 </div>
             </div>
         </div>

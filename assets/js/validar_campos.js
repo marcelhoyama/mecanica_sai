@@ -29,20 +29,20 @@ $(document).ready(function () {
     });
 
 
-    $('#cadastrarcliente').validate({
-
-        rules: {
-            cpf: {cpfBR: true},
-            nome: {required: true, isString: true},
-            telefone2: "required",
-            email: true
-
-
-        },
-        messages: {
-
-        }
-    });
+//    $('#cadastrarcliente').validate({
+//
+//        rules: {
+//            cpf: {cpfBR: true},
+//            nome: {required: true, isString: true},
+//            telefone2: "required",
+//            email: true
+//
+//
+//        },
+//        messages: {
+//
+//        }
+//    });
 
     $('#cadastrarimovel').validate({
 

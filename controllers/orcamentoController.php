@@ -85,5 +85,25 @@ public function pegar_equipamento(){
     }
     
 }
+
+public function listarequipamento (){
+        $dados=array();
+        
+        $e=new equipamento();
+      
+       if(isset($_POST['id_cliente']) && !empty($_POST['id_cliente'])){
+     $id_cliente= trim(addslashes($_POST['id_cliente']));
+          $dados['listarequipamento']=$e->listarEquipamento($id_cliente);
+          header('Content-Type: application/json');
+          echo json_encode($dados);
+          exit;
+       }else{
+           echo 'Nao fo listar os equipamentos de'.$id_cliente;
+       }
+        
+        
+       
+    
+}
 }
 

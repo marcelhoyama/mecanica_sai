@@ -26,10 +26,17 @@ function cadastrarcliente() {
                         url: 'cadastrarcliente',
                         type: 'POST',
                         data: {nome: nome, email: email, telefone: telefone, telefone2: telefone2, endereco: endereco, cpf: cpf},
+                        dataType:'json',
+                                     success: function (json) {
+                                       
+                           	$("#id_cliente").prepend(" <option value="+json.id+" >"+json.nome+"</option>");
+			 
+                           
+                          	  console.log(json[0]);
+                                       
+                           
 
-                        success: function () {
-                            ListaCliente();
-
+                        
                         }
 
                     });
@@ -61,25 +68,19 @@ function ListaVeiculo(id_cliente) {
         data: {id_cliente: id_cliente},
         dataType: 'json',
         success: function (retorno) {
-            $('#id_veiculo').html(retorno);
+            $('#id_veiculo').innerHTML(retorno);
         }
     });
 
 }
 
-function ListaEquipamento(id_cliente) {
+function ListaEquipamento() {
 
-    $.ajax({
-
-        url: 'listarequipamento',
-        type: 'POST',
-        data: {id_cliente: id_cliente},
-        dataType: 'json',
-        success: function (retorno) {
-            $('#id_equipamento').html(retorno);
-        }
-    });
-
+    $.post(
+            "orcamento/listarequipamento",
+            function (retorno) {
+                $('#id_equipamento').html(retorno);
+            });
 }
 
 function pegarObjeto(obj) {
@@ -212,7 +213,11 @@ function cadastrarveiculo(id_cliente) {
                         dataType: 'json',
                         success: function () {
 
-                            ListaVeiculo(id_cliente);
+                           if(ListaVeiculo(id_cliente)===null){
+                               
+                           }else{
+                               alert('nao foi lista veiculo');
+                           };
 
                         }
                     });
@@ -258,7 +263,8 @@ function cadastrarequipamento(id_cliente) {
                         dataType: 'json',
                         success: function () {
 
-                            ListarEquipamento(id_cliente);
+                    
+                            ListarEquipamento();
 
 
                         }

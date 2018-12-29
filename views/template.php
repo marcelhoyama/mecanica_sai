@@ -14,11 +14,11 @@
 
         <script src="<?php echo BASE_URL; ?>assets/js/jquery-3.1.1.min.js"></script>
 
-        <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bunble.min.js"></script>
+<!--        <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.bunble.min.js"></script>-->
         <script src="<?php echo BASE_URL; ?>assets/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/css/style.css"></script>
         
-        <script src="<?php echo BASE_URL; ?>assets/js/additional-methods.min.js"></script>
+        <!--<script src="<?php echo BASE_URL; ?>assets/js/additional-methods.min.js"></script>-->
         <script src="<?php echo BASE_URL; ?>assets/js/jquery.mask.js"></script>
         <script src="<?php echo BASE_URL; ?>assets/js/jquery.validate.js"></script>
         

@@ -22,8 +22,9 @@ $id_cliente= $this->db->lastInsertId();
             if ($sql->rowCount() > 0) {
 
            
-$array=$this->listarUmCliente($id_cliente);
-return  json_encode($array);
+//$array=$this->listarUmCliente($id_cliente);
+//return  json_encode($array);
+                return $id_cliente;
             } else {
                 return false;
             }
@@ -35,7 +36,7 @@ return  json_encode($array);
     public function listarCliente() {
         try {
             $array = array();
-            $sql = 'SELECT * FROM clientes ORDER BY nome';
+            $sql = 'SELECT * FROM clientes ORDER BY id DESC';
             $sql = $this->db->prepare($sql);
             $sql->execute();
             if ($sql->rowCount() > 0) {
@@ -61,7 +62,7 @@ return  json_encode($array);
             } else {
                 return FALSE;
             }
-            return  json_encode($array);
+            return  $array;
         } catch (Exception $ex) {
             echo "Falhou:" . $ex->getMessage();
         }
