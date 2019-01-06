@@ -13,10 +13,10 @@ $c =new cliente();
             $cpf = addslashes($_POST['cpf']);
             $endereco= trim(addslashes($_POST['endereco']));
             
-           $retorno=$c->cadastrar($nome, $cpf, $endereco, $telefone, $telefone2, $email);
+           $id_cliente=$c->cadastrar($nome, $cpf, $endereco, $telefone, $telefone2, $email);
        
-          echo $retorno;
-          exit();
+            echo json_encode($dados['cliente']=$c->listarUmCliente($id_cliente));
+         
         }
 
         $this->loadView("cadastrarcliente", $dados);

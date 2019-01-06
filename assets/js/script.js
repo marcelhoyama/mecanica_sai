@@ -18,30 +18,38 @@ function cadastrarcliente() {
                 var telefone2 = $(this).find('input[name=telefone2]').val();
                 var email = $(this).find('input[name=email]').val();
 
-                if (nome === '' && telefone2 === '') {
-
-                } else {
-
-                    $.ajax({
+                if (nome !== '' && telefone2 !== '') {
+    $.ajax({
                         url: 'cadastrarcliente',
                         type: 'POST',
                         data: {nome: nome, email: email, telefone: telefone, telefone2: telefone2, endereco: endereco, cpf: cpf},
-                        dataType:'json',
-                                     success: function (json) {
-                                       
-                           	$("#id_cliente").prepend(" <option value="+json.id+" >"+json.nome+"</option>");
+                    
+                                     success: function (data) {
+                                 
+var obj = JSON.parse(data);
+
+$("#id_cliente").prepend(" <option value="+obj.id+" selected>"+obj.nome+"</option>");
 			 
+        
+//                           var x=(" <option value="+json.id_cliente+" >"+json.nome+"</option>");
+//			 document.getElementById("#id_cliente").innerHTML = x;
                            
-                          	  console.log(json[0]);
+                          	
                                        
                            
 
                         
+                        },
+                        error: function(){
+                            alert('eeroro');
                         }
 
                     });
 
                     $('#clienteModal').modal('hide');
+                } else {
+
+                alert("Prencha os campos !");
                 }
 
             });

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <h1 class="text-center">Cadastro Orçamento</h1>
     <div class="h4">Obs: orçamento individual</div>
-
+    <form method="POST" id="cadastrarorcamento">
     <div class="row" >
         <div class="col-sm" >
             <label for="id_cliente">Selecione o Cliente:</label>
@@ -15,7 +15,7 @@
 
 
                 </select>
-
+                
                 <div class="input-group-append">
                     <a href="javascript:;" onclick="cadastrarcliente(this)" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                 </div>
@@ -77,8 +77,8 @@
             </div>
             <div class="col-sm">
                 <label for="status">Status</label>
-                <select class="form-control">
-                    <option selected="selected" name="status" id="status">Selecione o Status...</option>
+                <select class="form-control" name="status" id="status">
+                    <option selected="selected" >Selecione o Status...</option>
                     <option value="Em Aberto">Em aberto</option>
                     <option value="Em Manutenção">Em manutenção</option>
                     <option value="Finalizada">Finalizada</option>
@@ -141,19 +141,20 @@
             </div>
         </div>
 
+    </div>
 
-
-
+   
 
 
         <br>
-        <button class="btn btn-success" type="submit" data-toggle="modal" data-target=".bd-example-modal-sm">Cadastrar</button>
+        <button class="btn btn-success" type="submit" >Cadastrar</button>
 
         <?php if ("1=1") { ?>
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Imprimir</button>
 
         <?php } ?>
+             </form>
     </div>
 
 

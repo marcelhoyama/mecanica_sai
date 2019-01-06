@@ -18,13 +18,13 @@ class cliente extends model {
 
 
             $sql->execute();
-$id_cliente= $this->db->lastInsertId();
+$array= $this->db->lastInsertId();
             if ($sql->rowCount() > 0) {
 
            
-//$array=$this->listarUmCliente($id_cliente);
-//return  json_encode($array);
-                return $id_cliente;
+
+return  $array;
+               
             } else {
                 return false;
             }
@@ -52,13 +52,14 @@ $id_cliente= $this->db->lastInsertId();
 
      public function listarUmCliente($id_cliente) {
         try {
+           
             $array = array();
             $sql = 'SELECT * FROM clientes WHERE id =:id_cliente';
             $sql = $this->db->prepare($sql);
             $sql->bindValue(':id_cliente',$id_cliente);
             $sql->execute();
             if ($sql->rowCount() > 0) {
-                $array = $sql->fetchAll();
+                $array = $sql->fetch();
             } else {
                 return FALSE;
             }
