@@ -1,4 +1,4 @@
-<form method="POST" id="cadastrarequipamento">
+<form method="POST" id="form">
     <h1 class="text text-center">Cadastro equipamento</h1>
 <div class="form-group">
     <input class="form-control" name="cliente_veiculo" id="cliente_veiculo" value="<?php echo $_POST['id_cliente'];?>" type="text" disabled="disabled">
@@ -27,4 +27,4 @@
     
 </div>
 
-
+</form>

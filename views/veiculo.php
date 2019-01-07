@@ -1,9 +1,9 @@
 <form method="POST" id="cadastrarveiculo"> 
-    <h1 class="text text-center">Cadastro veiculo</h1>
+    <h1 class="text text-center">Cadastrar veiculo</h1>
 <div class="form-group">
     <input class="form-control" name="cliente_veiculo" id="cliente_veiculo" value="<?php echo $_POST['id_cliente'];?>" type="text" disabled="disabled">
     <br>
-    <input class="form-control" name="marca" id="marca" placeholder="Marca/modelo" type="text">
+    <input class="form-control" name="marca" id="marca" placeholder="Marca/modelo">
     <br>
     
     <input class="form-control"  name="ano" id="ano" placeholder="Ano" type="text">
@@ -25,11 +25,10 @@
            <option value="Gasolina/Alcool">Gasolina/Alcool</option>
     </select>
           </div>
-   
-    <button class="btn btn-success" type="submit">Cadastrar</button>
+   </div>
     
-  
+     <button  id="cadastrar" type="submit" class="btn btn-primary">Cadastrar</button>
     
-</div>
 
 
+</form>

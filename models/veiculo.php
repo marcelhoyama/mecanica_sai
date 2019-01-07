@@ -4,6 +4,7 @@ class veiculo extends model {
 
     public function cadastrar($marca, $ano, $placa, $km, $combustivel, $id_cliente) {
         try {
+            $array=array();
             $sql = "INSERT INTO veiculos (marca, ano, placa, km, combustivel, data, id_cliente) VALUES (:marca, :ano, :placa ,:km, :combustivel, :data , :id_cliente)";
             $sql = $this->db->prepare($sql);
             $sql->bindValue(":marca", $marca);
@@ -16,7 +17,7 @@ class veiculo extends model {
 
 
             $sql->execute();
-
+$array= $this->db->lastInsertId();
             if ($sql->rowCount() > 0) {
 
                 return TRUE;
@@ -47,4 +48,21 @@ class veiculo extends model {
     }
     
 
+    public function listarUmVeiculo($id_veiculo) {
+        try {
+            $array = array();
+            $sql = 'SELECT * FROM veiculos WHERE id = :id';
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(":id", $id_veiculo);
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $array = $sql->fetch();
+            } else {
+                return FALSE;
+            }
+            return $array;
+        } catch (Exception $ex) {
+            echo "Falhou:" . $ex->getMessage();
+        }
+    }
 }

@@ -44,5 +44,21 @@ class equipamento extends model {
             echo "Falhou:" . $ex->getMessage();
         }
     }
-
+  public function listarUmEquipamento($id_equipamento) {
+        try {
+            $array = array();
+            $sql = 'SELECT * FROM equipamentos WHERE id = :id';
+            $sql = $this->db->prepare($sql);
+            $sql->bindValue(":id", $id_equipamento);
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $array = $sql->fetch();
+            } else {
+                return FALSE;
+            }
+            return $array;
+        } catch (Exception $ex) {
+            echo "Falhou:" . $ex->getMessage();
+        }
+    }
 }

@@ -21,12 +21,12 @@ class orcamentoController extends controller {
         $dados['ultimoNumero']=1+$ultimoNumero['id'];
           
         if(isset($_POST['numero']) && !empty($_POST['numero'])){
-         echo 'numero'.  $numero= addslashes($_POST['numero']).'<br>';
+          $numero= addslashes($_POST['numero']);
             
-         echo 'status'.  $status= trim(addslashes($_POST['status'])).'<br>';
-          echo 'entrada'. $dataentrada= trim(addslashes($_POST['dataentrada'])).'<br>';
-           echo 'saida'.$datasaida= trim(addslashes($_POST['datasaida'])).'<br>';
-           echo 'id cliente:'.$id_cliente= trim(addslashes($_POST['id_cliente'])).'<br>';
+          $status= trim(addslashes($_POST['status']));
+          $dataentrada= trim(addslashes($_POST['dataentrada']));
+           $datasaida= trim(addslashes($_POST['datasaida']));
+           $id_cliente= trim(addslashes($_POST['id_cliente']));
             
             
             //veiculo
@@ -36,9 +36,9 @@ class orcamentoController extends controller {
             $placa= trim(addslashes($_POST['placa']));
             $km= trim(addslashes($_POST['km']));
             $tipocombustivel= trim(addslashes($_POST['tipo']));
-       echo 'problema'.    $problema= trim(addslashes($_POST['defeito'])).'<br>';
-         echo 'obs'.   $obs= trim(addslashes($_POST['obs'])).'<br>';
-           echo'servico'. $servico= trim(addslashes($_POST['servico'])).'<br>';
+           $problema= trim(addslashes($_POST['defeito']));
+         $obs= trim(addslashes($_POST['obs']));
+           $servico= trim(addslashes($_POST['servico']));
             
             
         }
@@ -49,16 +49,16 @@ class orcamentoController extends controller {
 
 public function pegar_veiculo(){
     
-    $dados=array();
+    $dados=array('veiculo'=>'');
     if(isset($_POST['cliente'])){
          
-        $id_cliente= trim(addslashes($_POST['cliente']));
+      echo  $id_cliente= trim(addslashes($_POST['cliente']));
         $v=new veiculo();
-        $dados=$v->listarVeiculo($id_cliente);
+        $dados['veiculo']=$v->listarUmVeiculo($id_cliente);
      
         header('Content-Type: application/json');
     echo json_encode($dados);
-    
+    exit();
           
     }else{
         echo 'nao entrou no if<br>';
@@ -104,5 +104,108 @@ public function listarequipamento (){
        
     
 }
+
+ public function cadastrarveiculo() {
+        $dados = array( 'veiculo'=>'');
+   
+        
+        if(isset($_POST['placa']) && !empty($_POST['placa'])) {
+           $placa= trim(addslashes($_POST['placa']));
+           $marca= trim(addslashes($_POST['marca']));
+           $ano= trim(addslashes($_POST['ano']));
+           $km= trim(addslashes($_POST['km']));
+           $tipo= trim(addslashes($_POST['tipo']));
+           $id_cliente= trim(addslashes($_POST['id_cliente']));
+           
+            $v=new veiculo();
+        $id_veiculo=$v->cadastrar($marca, $ano, $placa, $km, $tipo,$id_cliente);
+         
+        $dados['veiculo']=$v->listarUmVeiculo($id_veiculo);
+        }else{ 
+            echo 'nao ta vindo valores';
+
+        
+    }
+      header('Content-Type: application/json');
+    echo json_encode($dados);
+    exit();
+
+}
+
+ public function veiculo (){
+       $dados=array();
+// os dados sendo pego direto no cadastrar veiculo        
+   
+        
+        $this->loadView("veiculo",$dados);
+    }
+    
+    
+    public function cadastrarcliente() {
+        $dados = array('cliente' => '');
+$c =new cliente();
+        if (isset($_POST['nome']) && !empty($_POST['nome'])) {
+            $nome = trim(addslashes($_POST['nome']));
+            $email = trim(addslashes($_POST['email']));
+            $telefone = addslashes($_POST['telefone']);
+            $telefone2 = addslashes($_POST['telefone2']);
+            $cpf = addslashes($_POST['cpf']);
+            $endereco= trim(addslashes($_POST['endereco']));
+            
+           $id_cliente=$c->cadastrar($nome, $cpf, $endereco, $telefone, $telefone2, $email);
+       
+            $dados['cliente']=$c->listarUmCliente($id_cliente);
+         
+        }
+  header('Content-Type: application/json');
+        echo json_encode($dados);
+    exit();
+    }
+    
+        public function cliente (){
+       $dados=array();
+// os dados sendo pego direto no cadastrar veiculo        
+   
+        
+        $this->loadView("cliente",$dados);
+    }
+    
+    
+    
+     public function cadastrarequipamento() {
+        $dados = array( 'equipamento'=>'');
+   
+        
+        if(isset($_POST['placa']) && !empty($_POST['placa'])) {
+         
+           $marca= trim(addslashes($_POST['marca']));
+         
+           $descricao= trim(addslashes($_POST['descricao']));
+           $tipo= trim(addslashes($_POST['tipo']));
+           $id_cliente= trim(addslashes($_POST['cliente_veiculo']));
+           
+            $e=new equipamento();
+        $id_equipamento=$e->cadastrar($tipo, $descricao, $marca, $id_cliente);
+         
+        $dados['equipamento']=$e->listarUmEquipamento($id_equipamento);
+        }else{ 
+            echo 'nao ta vindo valores';
+
+        
+    }
+      header('Content-Type: application/json');
+    echo json_encode($dados);
+    exit();
+
+}
+    
+    public function equipamento (){
+        $dados=array();
+        
+     
+        
+        
+        $this->loadView("equipamento",$dados);
+    }
 }
 

@@ -47,9 +47,8 @@
                 <div class="input-group-append">
                     <div class="numero_cliente"  >
                     
-               
-                        <button class="btn btn-outline-secondary" type="button" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                </div>
+                  <a href="javascript:;" onclick="cadastrarveiculo(this)" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                  </div>
                     </div>
             </div>
         </div>
@@ -63,8 +62,8 @@
                 </select>
                 <div class="input-group-append">
                     <div class="numero_equipamento">
-                    <button class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                </div>
+               <a href="javascript:;" onclick="cadastrarequipamento(this)" class="btn btn-outline-secondary" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,6 +123,23 @@
         <br>
 
         <div class="modal fade" id="clienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+               <div class="modal fade" id="veiculoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

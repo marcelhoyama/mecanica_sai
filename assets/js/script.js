@@ -1,7 +1,7 @@
 function cadastrarcliente() {
     $('#clienteModal').modal('toggle');
     $.ajax({
-        url: 'cliente',
+        url: 'orcamento/cliente',
         type: 'POST',
 
         success: function (html) {
@@ -19,28 +19,20 @@ function cadastrarcliente() {
                 var email = $(this).find('input[name=email]').val();
 
                 if (nome !== '' && telefone2 !== '') {
-    $.ajax({
-                        url: 'cadastrarcliente',
+                    $.ajax({
+                        url: 'orcamento/cadastrarcliente',
                         type: 'POST',
+                        dataType:'json',
                         data: {nome: nome, email: email, telefone: telefone, telefone2: telefone2, endereco: endereco, cpf: cpf},
-                    
-                                     success: function (data) {
-                                 
-var obj = JSON.parse(data);
 
-$("#id_cliente").prepend(" <option value="+obj.id+" selected>"+obj.nome+"</option>");
-			 
-        
-//                           var x=(" <option value="+json.id_cliente+" >"+json.nome+"</option>");
-//			 document.getElementById("#id_cliente").innerHTML = x;
-                           
-                          	
-                                       
-                           
+                        success: function (data) {
 
-                        
+                            var obj = JSON.parse(data);
+
+                            $("#id_cliente").prepend(" <option value=" + obj.id + " selected>" + obj.nome + "</option>");
+
                         },
-                        error: function(){
+                        error: function () {
                             alert('eeroro');
                         }
 
@@ -49,9 +41,174 @@ $("#id_cliente").prepend(" <option value="+obj.id+" selected>"+obj.nome+"</optio
                     $('#clienteModal').modal('hide');
                 } else {
 
-                alert("Prencha os campos !");
+                    alert("Prencha os campos !");
                 }
 
+            });
+
+
+        }
+    });
+}
+
+function cadastrarveiculo(obj) {
+    var id_cliente =obj.value;
+    $('#veiculoModal').modal('toggle');
+    $.ajax({
+        url: 'orcamento/veiculo',
+        type: 'POST',
+data:{id_cliente:id_cliente},
+        success: function (html) {
+
+            $('#veiculoModal').find('.modal-body').html(html);
+            $('#veiculoModal').find('.modal-body').find('button').on('click', function () {
+
+              
+
+               var marca = $(this).find('input[name=marca]').val();
+                var ano = $(this).find('input[name=ano]').val();
+                 var placa = $(this).find('input[name=placa]').val();
+                 var km = $(this).find('input[name=km]').val();
+                var tipo = $(this).find('select[name=tipo]').val();
+                var id_cliente=$(this).find('input[name=cliente_veiculo').val();
+
+                if (placa !== '' && km !== '') {
+                    $.ajax({
+                  url: 'orcamento/cadastrarveiculo',
+                        type: 'POST',
+                        dataType:'json',
+                        data: {marca: marca, ano: ano, placa: placa, km: km, tipo: tipo, id_cliente: id_cliente},
+                        success: function (data) {
+//                            var obj = JSON.parse(data);
+                            alert("id:" + data);
+//var obj = JSON.parse(data);
+                           
+//$("#id_veiculo").prepend(" <option value="+obj.id+" selected>"+obj.placa+"</option>");
+                        },
+                        error: function () {
+                            alert('eeroro');
+                        }
+
+                    });
+
+                    $('#veiculoModal').modal('hide');
+                } else {
+
+                    alert("Prencha os campos !");
+                }
+
+            });
+
+
+        }
+    });
+}
+
+
+//function cadastrarveiculo(obj) {
+//      var id_cliente = obj.value;
+//    $('#veiculoModal').modal('toggle');
+//    $.ajax({
+//        url: 'orcamento/veiculo',
+//        type: 'POST',
+//        data: {id_cliente: id_cliente},
+//       
+//        success: function (html2) {
+//             $('#veiculoModal').find('.modal-body').html(html2);
+//           
+//         
+//            $('#cadastrarveiculo').on('submit', function (e) {
+//
+//
+//                e.preventDefault();
+//
+//
+//                var marca = $(this).find('input[name=marca]').val();
+//                var ano = $(this).find('input[name=ano]').val();
+//                 var placa = $(this).find('input[name=placa]').val();
+//                 var km = $(this).find('input[name=km]').val();
+//                var tipo = $(this).find('select[name=tipo]').val();
+//                var id_cliente = $(this).find('input[name=cliente_veiculo]').val();
+//
+//
+//               if (placa !== '' && km !== '') {
+////                    alert('marca'+placa);
+////                    
+//                    $.ajax({
+//                        url: 'orcamento/cadastrarveiculo',
+//                        type: 'POST',
+//                        dataType:'json',
+//                        data: {marca: marca, ano: ano, placa: placa, km: km, tipo: tipo, id_cliente: id_cliente},
+//
+//                        success: function (data) {
+////                            var obj = JSON.parse(data);
+//                            alert("id:" + data);
+////var obj = JSON.parse(data);
+//                           
+////$("#id_veiculo").prepend(" <option value="+obj.id+" selected>"+obj.placa+"</option>");
+//                        },
+//                        error: function () {
+//                            alert("nao retornou");
+//                        }
+//                    });
+//                     $('#clienteModal').modal('hide');
+//                } else {
+//
+//                    alert("Preencher os campos!");
+//
+//                }
+//               
+//            });
+//
+//
+//        }
+//    });
+//}
+function cadastrarequipamento(id_cliente) {
+    $('#clienteModal').modal('toggle');
+    $.ajax({
+        url: 'orcamento/equipamento',
+        type: 'POST',
+        data: {id_cliente: id_cliente},
+
+        success: function (resposta) {
+
+            $('#clienteModal').find('.modal-body').html(resposta);
+            $('#clienteModal').find('.modal-body').on('submit', function (e) {
+
+                e.preventDefault();
+
+                var marca = $(this).find('input[name=marca]').val();
+                var descricao = $(this).find('textarea[name=descricao]').val();
+                var tipo = $(this).find('input[name=tipo]').val();
+
+                var id_cliente = $(this).find('input[name=cliente_veiculo]').val();
+
+
+                if (marca !== '' && tipo !== '') {
+//                    $.ajax({
+//                        url: 'orcamento/cadastrarequipamento',
+//                        type: 'POST',
+//                        data: {marca: marca, descricao: descricao, tipo: tipo, id_cliente: id_cliente},
+//
+//                        success: function (data) {
+//
+//
+//                            alert('valores:' + data);
+//
+//
+//                        },
+//                        error: function () {
+//                            alert("Nao retornou html!");
+//                        }
+//                    });
+                     $('#clienteModal').modal('hide');
+                } else {
+
+
+                    alert("Preencha os campos!");
+                }
+               
             });
 
 
@@ -134,7 +291,7 @@ function pegarObjeto(obj) {
                 }
             },
             error: function () {
-                //cadastro veiculo
+                alert("Nao pegou o item veiculo");
             }
         });
     }
@@ -183,107 +340,7 @@ function pegarEquipamento(item) {
             }
         },
         error: function () {
-            // cadastro equipamento
+            alert('nao pegou equipamento');
         }
     });
 }
-
-function cadastrarveiculo(id_cliente) {
-    $('#clienteModal').modal('toggle');
-    $.ajax({
-        url: 'veiculo',
-        type: 'POST',
-        data: {id_cliente: id_cliente},
-        success: function (html) {
-
-            $('#clienteModal').find('.modal-body').html(html);
-
-            $('#clienteModal').find('.modal-body').find('form').on('submit', function (e) {
-
-                e.preventDefault();
-
-                var marca = $(this).find('input[name=marca]').val();
-                var ano = $(this).find('input[name=ano]').val();
-                var placa = $(this).find('input[name=placa]').val();
-                var km = $(this).find('input[name=km]').val();
-                var tipo = $(this).find('select[name=tipo]').val();
-                var id_cliente = $(this).find('input[name=cliente_veiculo]').val();
-
-
-                if (placa === '' && km === '') {
-
-                } else {
-
-                    $.ajax({
-                        url: 'cadastrarveiculo',
-                        type: 'POST',
-                        data: {marca: marca, ano: ano, placa: placa, km: km, tipo: tipo, id_cliente: id_cliente},
-                        dataType: 'json',
-                        success: function () {
-
-                           if(ListaVeiculo(id_cliente)===null){
-                               
-                           }else{
-                               alert('nao foi lista veiculo');
-                           };
-
-                        }
-                    });
-                    $('#clienteModal').modal('hide');
-                }
-
-            });
-
-
-        }
-    });
-}
-function cadastrarequipamento(id_cliente) {
-    $('#clienteModal').modal('toggle');
-    $.ajax({
-        url: 'equipamento',
-        type: 'POST',
-        data: {id_cliente: id_cliente},
-        
-
-        success: function (resposta) {
-
-            $('#clienteModal').find('.modal-body').html(resposta);
-            $('#clienteModal').find('.modal-body').find('form').on('submit', function (e) {
-
-                e.preventDefault();
-
-                var marca = $(this).find('input[name=marca]').val();
-                var descricao = $(this).find('textarea[name=descricao]').val();
-                var tipo = $(this).find('input[name=tipo]').val();
-
-                var id_cliente = $(this).find('input[name=cliente_veiculo]').val();
-
-
-                if (marca === '' && tipo === '') {
-
-                } else {
-
-                    $.ajax({
-                        url: 'cadastrarequipamento',
-                        type: 'POST',
-                        data: {marca: marca, descricao: descricao, tipo: tipo, id_cliente:id_cliente},
-                        dataType: 'json',
-                        success: function () {
-
-                    
-                            ListarEquipamento();
-
-
-                        }
-                    });
-                    $('#clienteModal').modal('hide');
-                }
-
-            });
-
-
-        }
-    });
-}
-
